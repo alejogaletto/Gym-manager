@@ -17,6 +17,8 @@ urlpatterns = [
     path("staff/",staff,name = "staff"),
     path("exercises/",exercises,name = "exercises"),
     path("payments/",payments ,name = "payments"),
+    path("students/create",StudentCreate.as_view() ,name = "studentCreate"),
+
 
 ]
 

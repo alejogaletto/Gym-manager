@@ -7,8 +7,12 @@ from django import template
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
-from django.urls import reverse
+from django.urls import reverse,reverse_lazy
 from django.shortcuts import render
+from django.views.generic import ListView,DetailView,CreateView,UpdateView,DeleteView
+from .models import *
+
+
 
 
 
@@ -46,7 +50,15 @@ def pages(request):
         return HttpResponse(html_template.render(context, request))
 
 def students(request):
-    return render(request,'home/students.html')
+    studentList = Student.objects.all()
+    return render(request,'home/students.html',{'studentList' : studentList})
+
+class StudentCreate(CreateView):
+    model = Student
+    fields = '__all__'
+    success_url= reverse_lazy('students')
+    template_name= 'home/student_form.html'
+    
 
 
 def staff(request):

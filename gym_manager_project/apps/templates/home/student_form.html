@@ -1,0 +1,21 @@
+{% extends "layouts/base.html" %}
+
+
+{% block content %}
+<div class="content">
+    <div class="row">
+        <div class="col">
+          <h2>Agregar alumno</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <form method="POST">{% csrf_token %}
+                {{form.as_p}}
+                <input class="btn btn-success" type="submit" name="" value="Listo">
+            </form>
+        </div>
+    </div>
+    
+</div>
+{% endblock %}
