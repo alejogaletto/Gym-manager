@@ -18,7 +18,8 @@ urlpatterns = [
     path("exercises/",exercises,name = "exercises"),
     path("payments/",payments ,name = "payments"),
     path("students/create",StudentCreate.as_view() ,name = "studentCreate"),
-
+    path("students/<pk>",StudentUpdate.as_view() ,name = "studentDetail"),
+    path("students/delete/<pk>",StudentDelete.as_view() ,name = "deleteStudent"),
 
 ]
 

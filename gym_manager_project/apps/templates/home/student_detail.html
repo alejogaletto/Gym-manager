@@ -1,0 +1,28 @@
+{% extends "layouts/base.html" %}
+
+
+{% block content %}
+<div class="content">
+    <div class="row">
+        <div class="col">
+          <h2>Detalles de alumno</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div style="width: 50%;">
+        <div class="col">
+            <h4>Nombre: {{object.name}} {{object.last_name}}</h4>        
+            <h4>DNI: {{object.dni}}</h4>
+            <h4>Telefono: {{object.phone}}</h4>
+            <h4>Email: {{object.email}}</h4>
+            <h4>Contacto de emergencia: {{object.emergency_contact}}</h4>
+            <h4>Ficha médica: {{object.health_file}}</h4>
+        </div>
+        
+
+
+    </div>
+    </div>
+    
+</div>
+{% endblock %}
