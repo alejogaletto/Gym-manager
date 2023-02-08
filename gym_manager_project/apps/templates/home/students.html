@@ -6,7 +6,6 @@
       <div class="col">
         <h2>Alumnos</h2>
         <a href="{% url 'studentCreate' %}">        <button type="button" class="btn btn-success">Agregar</button>        </a>
-        <button type="button" class="btn btn-danger">Eliminar</button>
 
       </div>
     </div>
@@ -34,7 +33,10 @@
 
               <tr>
                 <td>
-                  {{alumno.name}} {{alumno.last_name}} 
+                  <a style="color: rgba(255, 255, 255, 0.7);" href="{% url 'studentDetail' alumno.id %}">
+                    {{alumno.name}} {{alumno.last_name}} 
+
+                  </a>
 
                 </td>
                 <td>
@@ -48,6 +50,7 @@
                     
                   </div></a>
                 </td>
+                
                 
 
               </tr>

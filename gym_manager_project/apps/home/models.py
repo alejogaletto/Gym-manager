@@ -18,21 +18,24 @@ class Suscripcion(models.Model):
     tipo_plan = models.CharField(max_length=3,choices=PLAN_OPT)
     estado = models.BooleanField(default=False)
     dia_vencimiento = models.DateTimeField()
+    def __str__(self) -> str:
+        return self.tipo_plan
 
 
 class Student(models.Model):
     """
         All data related to the gym students 
     """
-    name = models.CharField(max_length=30, null=True)
-    last_name = models.CharField(max_length=30, null=True)
-    dni = models.IntegerField(max_length=8, null=True)
-    phone = models.IntegerField(max_length=15, null=True)
-    email = models.EmailField(null=True)
-    emergency_contact = models.IntegerField(max_length=15, null=True)
-    health_file = models.FileField()
+    name = models.CharField('Nombre',max_length=30, null=True)
+    last_name = models.CharField('Apellido',max_length=30, null=True)
+    dni = models.IntegerField('DNI',max_length=8, null=True)
+    phone = models.IntegerField('Teléfono',max_length=15, null=True)
+    email = models.EmailField('Email',null=True)
+    emergency_contact = models.IntegerField('Contacto de emergencia',max_length=15, null=True)
+    health_file = models.FileField('Ficha medica')
     suscription = models.ForeignKey(Suscripcion, related_name="susccription", on_delete=models.CASCADE)
-    
+    def __str__(self) -> str:
+        return self.name + " " + self.last_name  
 class Staff(models.Model):
     name = models.CharField(max_length=30, null=True)
     last_name = models.CharField(max_length=30, null=True)
