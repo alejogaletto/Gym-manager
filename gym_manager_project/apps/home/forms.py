@@ -18,3 +18,17 @@ class StudentForm(forms.ModelForm):
             'suscription' : forms.Select(attrs={'class': 'form-control'}),
 
         }
+
+class StaffForm(forms.ModelForm):
+    class Meta:
+        model = Staff
+        fs = FileSystemStorage(location='gym_manager_project/apps/static/assets/health_files')
+        fields = ('name','last_name','dni','phone','email','health_file')
+        widgets = {
+            'name' : forms.TextInput(attrs={'class': 'form-control'}),
+            'last_name' : forms.TextInput(attrs={'class': 'form-control'}),
+            'dni' : forms.NumberInput(attrs={'class': 'form-control'}),
+            'phone' : forms.NumberInput(attrs={'class': 'form-control'}),
+            'email' : forms.EmailInput(attrs={'class': 'form-control'}),
+            'health_file' : forms.FileInput(attrs={'class': 'form-control'}),
+        }

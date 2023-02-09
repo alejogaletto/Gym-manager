@@ -1,8 +1,72 @@
 {% extends "layouts/base.html" %}
+
+{%block title%}Staff{%endblock title%}
+
 {% block content %}
 
-<div class="contenido">
-    <h2>Staff</h2>
+<div class="content">
+    <div class="row">
+      <div class="col">
+        <h2>Staff</h2>
+        <a href="{% url 'staffCreate' %}">        <button type="button" class="btn btn-success">Agregar</button>        </a>
 
-</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table tablesorter" id="">
+            <thead class=" text-primary">
+              <tr>
+                <th>
+                  Nombre
+                </th>
+                <th>
+                  Dni
+                </th>
+                <th>
+                  Certificado
+                </th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {% if staffList%}
+              {% for staff in staffList%}
+
+              <tr>
+                <td>
+                  <a style="color: rgba(255, 255, 255, 0.7);" href="{% url 'staffDetail' staff.id %}">
+                    {{staff.name}} {{staff.last_name}} 
+
+                  </a>
+
+                </td>
+                <td>
+                  {{staff.dni}}
+                </td>
+                <td>
+                  <a download><div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                    
+                      <i class="tim-icons icon-notes" style="color: white;"></i>
+                      
+                    
+                  </div></a>
+                </td>
+                
+                
+
+              </tr>
+              {% endfor %}
+            </tbody>
+            
+            {%else%}
+            <h3>no hay miembros de staff</h3>
+            {%endif%}
+          </table>
+        </div>
+      </div>
+    </div>
+    
+  </div>
 {% endblock %}
