@@ -11,7 +11,7 @@ from django.urls import reverse,reverse_lazy
 from django.shortcuts import render
 from django.views.generic import ListView,DetailView,CreateView,UpdateView,DeleteView
 from .models import *
-from .forms import StudentForm
+from .forms import StudentForm, StaffForm   
 
 
 
@@ -73,9 +73,25 @@ class StudentDelete(DeleteView):
     success_url= reverse_lazy('students')
     template_name= 'home/student_confirm_delete.html'
 
-
 def staff(request):
-    return render(request,'home/staff.html')
+    staffList = Staff.objects.all()
+    return render(request,'home/staff.html',{'staffList' : staffList})
+class StaffCreate(CreateView):
+    model = Staff
+    form_class = StaffForm
+    success_url = reverse_lazy("staff")
+    template_name = "home/staff_form.html"
+
+class StaffUpdate(UpdateView):
+    model = Staff
+    form_class = StaffForm
+    success_url= reverse_lazy('staff')
+    template_name= 'home/staff_form.html'
+
+class StaffDelete(DeleteView):
+    model = Staff
+    success_url= reverse_lazy('staff')
+    template_name= 'home/staff_confirm_delete.html'
 
 
 def exercises(request):

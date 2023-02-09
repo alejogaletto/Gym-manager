@@ -42,7 +42,7 @@ class Staff(models.Model):
     dni = models.IntegerField(max_length=8, null=True)
     phone = models.IntegerField(max_length=15, null=True)
     email = models.EmailField(null=True)
-    
+    health_file = models.FileField(null=True)
 class Payments(models.Model):
     METHOD_OPT = [
         ("E", "Cash"),
