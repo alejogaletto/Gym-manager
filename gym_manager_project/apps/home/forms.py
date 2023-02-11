@@ -32,3 +32,14 @@ class StaffForm(forms.ModelForm):
             'email' : forms.EmailInput(attrs={'class': 'form-control'}),
             'health_file' : forms.FileInput(attrs={'class': 'form-control'}),
         }
+        
+class ExerciseForm(forms.ModelForm):
+    class Meta:
+        model = Exercise
+        fields = ('name','muscle','link')
+        widgets = {
+            'name' : forms.TextInput(attrs={'class': 'form-control'}),
+            'muscle' : forms.TextInput(attrs={'class': 'form-control'}),
+            'link' : forms.TextInput(attrs={'class': 'form-control'}),
+            
+        }

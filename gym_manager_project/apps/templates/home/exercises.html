@@ -1,8 +1,84 @@
 {% extends "layouts/base.html" %}
+
+{%block title%}Staff{%endblock title%}
+
 {% block content %}
 
-<div class="contenido">
-    <h2>Exercises</h2>
+<div class="content">
+    <div class="row">
+      <div class="col">
+        <h2>Ejercicios</h2>
+        <a href="{% url 'exerciseCreate' %}">        <button type="button" class="btn btn-success">Agregar</button>        </a>
+      </div>
+      
+    </div>
+    <div class="row">
+        <div class="col" >
+            <nav class="navbar" style="background-color: inherit; padding: 0px;">
+                <form action="{% url 'exercises'%}" class="form-inline my-2 my-lg-0">
+                  <input class="form-control " type="search" placeholder="Press de banca" aria-label="Search" name="ejercicio">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar ejercicio</button>
+                </form>
+              </nav>
+        </div>
+    </div>
+    <div class="row">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table tablesorter" id="">
+            <thead class=" text-primary">
+              <tr>
+                <th>
+                  Nombre
+                </th>
+                <th>
+                  Zona muscular
+                </th>
+                <th>
+                  Video
+                </th>
+                <th>
 
-</div>
+                </th>
+               
+
+              </tr>
+            </thead>
+
+            <tbody>
+              {% if exerciseList%}
+              {% for exercise in exerciseList%}
+
+              <tr>
+                <td>
+                  <a style="color: rgba(255, 255, 255, 0.7);" href="{% url 'exerciseDetail' exercise.id %}">
+                    {{exercise.name}}
+
+                  </a>
+
+                </td>
+                <td>
+                  {{exercise.muscle}}
+                </td>
+                <td colspan="2">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="{{exercise.link}}" allowfullscreen></iframe>
+                      </div>
+                </td>
+                
+                
+
+              </tr>
+              {% endfor %}
+            </tbody>
+            
+            {%else%}
+            <h3>No hay ejercicios</h3>
+            {%endif%}
+          </table>
+        </div>
+      </div>
+    </div>
+    
+  </div>
 {% endblock %}

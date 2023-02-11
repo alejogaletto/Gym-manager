@@ -11,7 +11,7 @@ from django.urls import reverse,reverse_lazy
 from django.shortcuts import render
 from django.views.generic import ListView,DetailView,CreateView,UpdateView,DeleteView
 from .models import *
-from .forms import StudentForm, StaffForm   
+from .forms import StudentForm, StaffForm,ExerciseForm   
 
 
 
@@ -51,8 +51,10 @@ def pages(request):
         html_template = loader.get_template('home/page-500.html')
         return HttpResponse(html_template.render(context, request))
 
+
+###### Students #####
 def students(request):
-    studentList = Student.objects.all()
+    studentList = Student.objects.all().order_by('name')
     return render(request,'home/students.html',{'studentList' : studentList})
 
 class StudentCreate(CreateView):
@@ -73,8 +75,11 @@ class StudentDelete(DeleteView):
     success_url= reverse_lazy('students')
     template_name= 'home/student_confirm_delete.html'
 
+
+###### Staff #####
+
 def staff(request):
-    staffList = Staff.objects.all()
+    staffList = Staff.objects.order_by('name')
     return render(request,'home/staff.html',{'staffList' : staffList})
 class StaffCreate(CreateView):
     model = Staff
@@ -93,9 +98,37 @@ class StaffDelete(DeleteView):
     success_url= reverse_lazy('staff')
     template_name= 'home/staff_confirm_delete.html'
 
+###### Exercises #####
 
 def exercises(request):
-    return render(request,'home/exercises.html')
+    if 'ejercicio' in request.GET:
+        ej = request.GET['ejercicio']
+        resultado = Exercise.objects.filter(name__contains=ej)
+        return render(request,'home/exercises.html',{'exerciseList' : resultado})
+    else:
+        exerciseList = Exercise.objects.order_by('name')
+        return render(request,'home/exercises.html',{'exerciseList' : exerciseList})
+
+class ExerciseCreate(CreateView):
+    model = Exercise
+    form_class = ExerciseForm
+    success_url = reverse_lazy("exercises")
+    template_name = "home/exercise_form.html"
+
+class ExerciseUpdate(UpdateView):
+    model = Exercise
+    form_class = ExerciseForm
+    success_url= reverse_lazy('exercises')
+    template_name= 'home/exercise_form.html'
+
+class ExerciseDelete(DeleteView):
+    model = Exercise
+    success_url= reverse_lazy('exercises')
+    template_name= 'home/exercise_confirm_delete.html'
+
+
+
+
 
 def payments(request):
     return render(request,'home/payments.html')

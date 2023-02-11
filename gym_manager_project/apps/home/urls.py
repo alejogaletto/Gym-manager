@@ -25,6 +25,9 @@ urlpatterns = [
     path("staff/create",StaffCreate.as_view() ,name = "staffCreate"),
     path("staff/<pk>",StaffUpdate.as_view() ,name = "staffDetail"),
     path("staff/delete/<pk>",StaffDelete.as_view() ,name = "deleteStaff"),
+    path("exercise/create",ExerciseCreate.as_view() ,name = "exerciseCreate"),
+    path("exercise/<pk>",ExerciseUpdate.as_view() ,name = "exerciseDetail"),
+    path("exercise/delete/<pk>",ExerciseDelete.as_view() ,name = "deleteExercise"),
     path(r'^favicon\.ico$',RedirectView.as_view(url='/static/images/favicon.ico'))
 ]
 

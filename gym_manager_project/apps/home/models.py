@@ -37,12 +37,12 @@ class Student(models.Model):
     def __str__(self) -> str:
         return self.name + " " + self.last_name  
 class Staff(models.Model):
-    name = models.CharField(max_length=30, null=True)
-    last_name = models.CharField(max_length=30, null=True)
-    dni = models.IntegerField(max_length=8, null=True)
-    phone = models.IntegerField(max_length=15, null=True)
-    email = models.EmailField(null=True)
-    health_file = models.FileField(null=True)
+    name = models.CharField('Nombre', max_length=30, null=True)
+    last_name = models.CharField('Apellido',max_length=30, null=True)
+    dni = models.IntegerField('DNI',max_length=8, null=True)
+    phone = models.IntegerField('Teléfono',max_length=15, null=True)
+    email = models.EmailField('Email',null=True)
+    health_file = models.FileField('Ficha médica',null=True)
 class Payments(models.Model):
     METHOD_OPT = [
         ("E", "Cash"),
@@ -55,8 +55,9 @@ class Payments(models.Model):
     staff = models.ForeignKey(Staff,on_delete=models.CASCADE)
 
 class Exercise(models.Model):
-    name = models.CharField(max_length=30, null=True)
-    muscle = models.CharField(max_length=30, null=True)
+    name = models.CharField('Nombre', max_length=30, null=True)
+    muscle = models.CharField('Músculo',max_length=30, null=True)
+    link = models.CharField('Link de video', max_length=100,null=True)
     
 class Routines(models.Model):
     exercises = models.ForeignKey(Exercise,on_delete=models.CASCADE)
