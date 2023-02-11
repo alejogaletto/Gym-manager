@@ -31,16 +31,16 @@
                         <p>Staff</p>
                     </a>
                 </li>
+                <li class="{% if 'typography' in segment %} active {% endif %}">
+                    <a href="{% url 'exercises'%}">
+                        <i class="tim-icons icon-user-run"></i>
+                        <p>Ejercicios</p>
+                    </a>
+                </li>
                 <li class="{% if 'notifications' in segment %} active {% endif %}">
                     <a href="/notifications.html">
                         <i class="tim-icons icon-bell-55"></i>
                         <p>Notifications</p>
-                    </a>
-                </li>
-                <li class="{% if 'user' in segment %} active {% endif %}">
-                    <a href="/user.html">
-                        <i class="tim-icons icon-single-02"></i>
-                        <p>User Profile</p>
                     </a>
                 </li>
                 <li class="{% if 'tables' in segment %} active {% endif %}">
@@ -49,12 +49,7 @@
                         <p>Pagos</p>
                     </a>
                 </li>
-                <li class="{% if 'typography' in segment %} active {% endif %}">
-                    <a href="{% url 'exercises'%}">
-                        <i class="tim-icons icon-user-run"></i>
-                        <p>Ejercicios</p>
-                    </a>
-                </li>
+                
                 <li>
                     <a href="{% url 'login' %}">
                         <i class="tim-icons icon-button-power"></i>

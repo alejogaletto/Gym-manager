@@ -1,0 +1,32 @@
+{% extends "layouts/base.html" %} {% block content %}
+<div class="content">
+  <div class="row">
+    {% if not object.id%}
+    <div class="col">
+      <h2>Agregar ejercicio</h2>
+    </div>
+
+    {%else%}
+    <div class="col">
+      <h2>Editar Ejercicio</h2>
+    </div>
+    {%endif%}
+  </div>
+  <div class="row">
+    <div style="width: 50%">
+      <div class="col">
+        <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %} {{form.as_p}}
+          <input class="btn btn-success" type="submit" name="" value="Listo" />
+          {% if object.id%}
+          <a href="{% url 'deleteExercise' object.id %}">
+            <button type="button" class="btn btn-danger">Eliminar</button>
+          </a>
+
+          {%endif%}
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
