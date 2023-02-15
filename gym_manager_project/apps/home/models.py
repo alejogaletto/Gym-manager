@@ -41,8 +41,10 @@ class Student(models.Model):
     health_file = models.FileField('Ficha medica', upload_to="health_files")
     suscription = models.IntegerField(max_length=3,choices=SUSCRIPTION_OPTS)
     date = models.DateTimeField(auto_now_add=True)
+    rutine = models.FileField('Plan de entrenamiento', upload_to="rutines", null=True)
     def __str__(self) -> str:
         return self.name + " " + self.last_name  
+
 class Staff(models.Model):
     name = models.CharField('Nombre', max_length=30, null=True)
     last_name = models.CharField('Apellido',max_length=30, null=True)
@@ -50,6 +52,7 @@ class Staff(models.Model):
     phone = models.IntegerField('Teléfono',max_length=15, null=True)
     email = models.EmailField('Email',null=True)
     health_file = models.FileField('Ficha médica',null=True)
+
 class Payments(models.Model):
     METHOD_OPT = [
         ("E", "Cash"),

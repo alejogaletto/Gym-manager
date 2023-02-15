@@ -43,3 +43,31 @@ class ExerciseForm(forms.ModelForm):
             'link' : forms.TextInput(attrs={'class': 'form-control'}),
             
         }
+
+class RutineForm(forms.Form):
+    exc_name = forms.CharField(
+        label="Ejercicio",
+        max_length=100,
+        required=True,
+        widget=forms.TextInput(
+            attrs={'class': 'form-control'}
+        )
+    )
+
+    reps = forms.CharField(
+        label="Repeticiones",
+        max_length=100,
+        required=True,
+        widget=forms.TextInput(
+            attrs={'class': 'form-control'}
+        )
+    )
+
+    rest = forms.CharField(
+        label="Descanso",
+        max_length=100,
+        required=True,
+        widget=forms.TextInput(
+            attrs={'class': 'form-control'}
+        )
+    )

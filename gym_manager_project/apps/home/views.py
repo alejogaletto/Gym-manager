@@ -11,7 +11,7 @@ from django.urls import reverse,reverse_lazy
 from django.shortcuts import render
 from django.views.generic import ListView,DetailView,CreateView,UpdateView,DeleteView
 from .models import *
-from .forms import StudentForm, StaffForm,ExerciseForm   
+from .forms import StudentForm, StaffForm,ExerciseForm, RutineForm  
 from datetime import timedelta,datetime,date
 
 
@@ -126,7 +126,16 @@ class ExerciseDelete(DeleteView):
     success_url= reverse_lazy('exercises')
     template_name= 'home/exercise_confirm_delete.html'
 
+class RutineCreate(CreateView):
+    success_url=reverse_lazy("rutines")
+    template_name= "home/rutines_form.html"
 
+
+def rutines(request):
+    if request.method == "POST":
+        form = RutineForm()
+        if form.is_valid():
+            return HttpResponseRedirect()
 
 def studentLogIn(request):
     if 'dni' in request.GET:
