@@ -12,7 +12,7 @@ from django.shortcuts import render
 from django.views.generic import ListView,DetailView,CreateView,UpdateView,DeleteView
 from .models import *
 from .forms import StudentForm, StaffForm,ExerciseForm   
-
+from datetime import timedelta,datetime,date
 
 
 
@@ -134,7 +134,11 @@ def studentLogIn(request):
             resultado = Student.objects.filter(dni = dni)
             if resultado:
                 resultado.update(suscription = resultado[0].suscription -1)
-                return render(request,'home/student_logIn.html',{'alumno': resultado[0], 'tried' : True})
+                finDeSus = resultado[0].date + timedelta(days=31) 
+                if finDeSus.timestamp() > datetime.today().timestamp():
+                    return render(request,'home/student_logIn.html',{'alumno': resultado[0], 'tried' : True,'vencido':False, 'finDeSus':finDeSus.strftime("%d-%m-%Y")})
+                else:
+                    return render(request,'home/student_logIn.html',{'alumno': resultado[0], 'tried' : False,'vencido':True, 'finDeSus':finDeSus.strftime("%d-%m-%Y")})
             else :
                 return render(request,'home/student_logIn.html',{'alumno': None, 'tried' : True})
     else:
