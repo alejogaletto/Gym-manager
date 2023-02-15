@@ -1,50 +1,74 @@
 {% extends "layouts/base.html" %}
-
-
+{% block navigation %}{% endblock navigation%}
+{% block sidebar %}{% endblock sidebar %}
+{% block footer %}{% endblock footer %} 
 {% block content %}
-<div class="content">
-    <div class="row">
-        <div class="col">
-          <h2>Ingrese su DNI</h2>
+<div
+  class="content d-flex flex-column justify-content-center"
+  style="width: 100vw; padding: 30px"
+>
+    <div class="row d-flex justify-content-center">
+        <a href="/" class="d-flex justify-content-center flex-column">
+            <i class="tim-icons icon-user-run d-flex justify-content-center"></i>
+            <p>Home</p>
+        </a>
+    </div>
+  <div class="row">
+    <div class="col d-flex justify-content-center">
+      <h1>Ingrese su DNI</h1>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <div style="width: 60%">
+      <div class="col text-centre">
+        <nav
+          class="navbar d-flex justify-content-center"
+          style="background-color: inherit; padding: 0px"
+        >
+          <form
+            action="{% url 'studentLogIn'%}"
+            class="form-inline my-2 my-lg-0"
+          >
+            <input
+              class="form-control"
+              type="search"
+              placeholder="DNI"
+              aria-label="Search"
+              name="dni"
+            />
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+              Ingresar
+            </button>
+          </form>
+        </nav>
+      </div>
+
+      <div
+        class="animate__animated animate__slideInRight d-flex justify-content-center mt-5 text-center"
+      >
+        {% if tried %} {% if alumno != None%}
+        <div id="saludo">
+          <h3>Bienvenido {{alumno.name}}!</h3>
+          {% if alumno.suscription > 0 %}
+          <h3 style="color: darkolivegreen">
+            Aun te quedan {{alumno.suscription}} clases!
+          </h3>
+          {% else %}
+          <h3 id="noClases" style="color: brown">Ya no te quedan clases..</h3>
+          {% endif %} {% if vencido %}
+          <h3 style="color: brown">Tu suscripción se venció el {{finDeSus}}</h3>
+          {% else %}
+          <h3 style="color: darkolivegreen">
+            Tu suscripción se vencerá el {{finDeSus}}
+          </h3>
+          {% endif %} {% else %}
+          <h3>Lo siento.. ese DNI no esta registrado</h3>
         </div>
+
+        {% endif %} {% endif %}
+      </div>
     </div>
-    <div class="row">
-        <div style="width: 60%;">
-        <div class="col">
-            <nav class="navbar" style="background-color: inherit; padding: 0px;">
-                <form action="{% url 'studentLogIn'%}" class="form-inline my-2 my-lg-0">
-                  <input class="form-control " type="search" placeholder="DNI" aria-label="Search" name="dni">
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Ingresar</button>
-                </form>
-            </nav>
-        </div>
-        
-        {% if tried %}
-            {% if alumno != None%}
-            <div id="saludo">
-                <h3>Bienvenido {{alumno.name}}!</h3>
-                {% if alumno.suscription > 0 %}
-                <h3>Aun te quedan {{alumno.suscription}} clases!</h3>
-                {% else %}
-                <h3 id="noClases">Ya no te quedan clases..</h3>
-                {% endif %}
-
-            {% else %}
-            <h3>Lo siento.. ese DNI no esta registrado</h3>
-            </div>
-            
-            {% endif %}
-        {% endif %}
-
-
-
-            
-
-
-
-
-    </div>
-    </div>
-    
+  </div>
+  
 </div>
 {% endblock %}

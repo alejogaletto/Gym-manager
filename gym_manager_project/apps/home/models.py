@@ -40,6 +40,7 @@ class Student(models.Model):
     emergency_contact = models.IntegerField('Contacto de emergencia',max_length=15, null=True)
     health_file = models.FileField('Ficha medica', upload_to="health_files")
     suscription = models.IntegerField(max_length=3,choices=SUSCRIPTION_OPTS)
+    date = models.DateTimeField(auto_now_add=True)
     def __str__(self) -> str:
         return self.name + " " + self.last_name  
 class Staff(models.Model):

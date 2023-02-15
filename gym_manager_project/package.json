@@ -16,6 +16,7 @@
     "engines": {
         "node": ">=10.0.0"
     },
-    "dependencies": {},
-    "devDependencies": {}
+    "dependencies": {
+        "animate.css": "^4.1.1"
+    }
 }
