@@ -28,8 +28,9 @@ urlpatterns = [
     path("exercise/create",ExerciseCreate.as_view() ,name = "exerciseCreate"),
     path("exercise/<pk>",ExerciseUpdate.as_view() ,name = "exerciseDetail"),
     path("exercise/delete/<pk>",ExerciseDelete.as_view() ,name = "deleteExercise"),
+    path("studentLogIn/",studentLogIn ,name = "studentLogIn"),
     path(r'^favicon\.ico$',RedirectView.as_view(url='/static/images/favicon.ico'))
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

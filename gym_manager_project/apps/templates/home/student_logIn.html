@@ -1,0 +1,50 @@
+{% extends "layouts/base.html" %}
+
+
+{% block content %}
+<div class="content">
+    <div class="row">
+        <div class="col">
+          <h2>Ingrese su DNI</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div style="width: 60%;">
+        <div class="col">
+            <nav class="navbar" style="background-color: inherit; padding: 0px;">
+                <form action="{% url 'studentLogIn'%}" class="form-inline my-2 my-lg-0">
+                  <input class="form-control " type="search" placeholder="DNI" aria-label="Search" name="dni">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Ingresar</button>
+                </form>
+            </nav>
+        </div>
+        
+        {% if tried %}
+            {% if alumno != None%}
+            <div id="saludo">
+                <h3>Bienvenido {{alumno.name}}!</h3>
+                {% if alumno.suscription > 0 %}
+                <h3>Aun te quedan {{alumno.suscription}} clases!</h3>
+                {% else %}
+                <h3 id="noClases">Ya no te quedan clases..</h3>
+                {% endif %}
+
+            {% else %}
+            <h3>Lo siento.. ese DNI no esta registrado</h3>
+            </div>
+            
+            {% endif %}
+        {% endif %}
+
+
+
+            
+
+
+
+
+    </div>
+    </div>
+    
+</div>
+{% endblock %}
