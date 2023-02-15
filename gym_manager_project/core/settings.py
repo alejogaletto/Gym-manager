@@ -67,9 +67,11 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.template.context_processors.media',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'apps.context_processors.cfg_assets_root',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -140,7 +142,8 @@ STATIC_URL = '/static/'
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
-    os.path.join(CORE_DIR, 'apps/static'),
+    os.path.join(CORE_DIR, '/static/'),
+    "apps/media/health_files",
 )
 
 MEDIA_ROOT = os.path.join(CORE_DIR, 'media')

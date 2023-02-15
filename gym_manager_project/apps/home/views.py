@@ -128,6 +128,17 @@ class ExerciseDelete(DeleteView):
 
 
 
+def studentLogIn(request):
+    if 'dni' in request.GET:
+            dni = request.GET['dni']
+            resultado = Student.objects.filter(dni = dni)
+            if resultado:
+                resultado.update(suscription = resultado[0].suscription -1)
+                return render(request,'home/student_logIn.html',{'alumno': resultado[0], 'tried' : True})
+            else :
+                return render(request,'home/student_logIn.html',{'alumno': None, 'tried' : True})
+    else:
+        return render(request,'home/student_logIn.html')
 
 
 def payments(request):
