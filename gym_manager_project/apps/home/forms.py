@@ -2,11 +2,15 @@ from django import forms
 from .models import *
 from django.core.files.storage import FileSystemStorage
 
+class DateTimeInput(forms.DateTimeInput):
+    input_type = 'date'
+
+
 class StudentForm(forms.ModelForm):
     class Meta:
         model = Student
         fs = FileSystemStorage(location='gym_manager_project/apps/static/assets/health_files')
-        fields = ('name','last_name','dni','phone','email','health_file','emergency_contact','suscription')
+        fields = ('name','last_name','dni','phone','email','health_file','emergency_contact','suscription','date')
         widgets = {
             'name' : forms.TextInput(attrs={'class': 'form-control'}),
             'last_name' : forms.TextInput(attrs={'class': 'form-control'}),
@@ -16,6 +20,7 @@ class StudentForm(forms.ModelForm):
             'health_file' : forms.FileInput(attrs={'class': 'form-control'}),
             'emergency_contact' : forms.NumberInput(attrs={'class': 'form-control'}),
             'suscription' : forms.Select(attrs={'class': 'form-control'}),
+            'date' : DateTimeInput(),
 
         }
 
