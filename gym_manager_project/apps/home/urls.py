@@ -29,8 +29,8 @@ urlpatterns = [
     path("exercise/<pk>",ExerciseUpdate.as_view() ,name = "exerciseDetail"),
     path("exercise/delete/<pk>",ExerciseDelete.as_view() ,name = "deleteExercise"),
     path("studentLogIn/",studentLogIn ,name = "studentLogIn"),
-    path("rutines/create", RutineCreate.as_view(), name="rutinesCreate"),
-    path("rutines", rutines, name="rutines"),
+    path("rutines/create", rutinesCreate, name="rutinesCreate"),
+    path("rutines/", rutines, name="rutines"),
     path(r'^favicon\.ico$',RedirectView.as_view(url='/static/images/favicon.ico'))
 ]+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
 

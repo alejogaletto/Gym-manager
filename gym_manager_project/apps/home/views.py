@@ -126,16 +126,16 @@ class ExerciseDelete(DeleteView):
     success_url= reverse_lazy('exercises')
     template_name= 'home/exercise_confirm_delete.html'
 
-class RutineCreate(CreateView):
-    success_url=reverse_lazy("rutines")
-    template_name= "home/rutines_form.html"
-
 
 def rutines(request):
-    if request.method == "POST":
-        form = RutineForm()
-        if form.is_valid():
-            return HttpResponseRedirect()
+    return render(request,'home/rutine.html')
+
+def rutinesCreate(request):
+    return render(request,'home/rutine_form.html')
+
+def setDay(request):
+    pass
+    
 
 def studentLogIn(request):
     if 'dni' in request.GET:

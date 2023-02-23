@@ -8,7 +8,52 @@
             </div>
         </div>
 
-        
+        <div>
+            <button class="btn btn-primary">Agregar día</button>
+        </div>
+
+        <div>
+            <a><button  class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Dias</button></a>
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                    <form
+                    class="d-flex justify-content-center flex-column"
+                    id="formEx"
+                  >
+                    <input
+                      class="form-control"
+                      placeholder="Dia 1"   
+                      name="dia"
+                    />
+
+                    <button id="botonTest" onclick="changeColor('formEx')" class="btn btn-primary" type="button" >Agregar Ejercicio</button>
+
+                    <button  class="btn btn-primary" type="button" >Eliminar Dia</button>
+                    
+                </div>
+                
+
+        </div>
+
+
+
+
     </div>
 
 {%endblock%}
+
+{% block javascripts %}
+<script>
+    
+    function changeColor(id)
+    {
+    
+    let input = document.createElement('input');
+    document.getElementById(id).appendChild(input);
+    }
+</script>
+
+
+{% endblock javascripts %}
+
+

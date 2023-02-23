@@ -41,7 +41,8 @@ class Student(models.Model):
     health_file = models.FileField('Ficha medica', upload_to="health_files")
     suscription = models.IntegerField(max_length=3,choices=SUSCRIPTION_OPTS)
     date = models.DateTimeField(auto_now_add=True)
-    rutine = models.FileField('Plan de entrenamiento', upload_to="rutines", null=True)
+    routine = models.FileField('Plan de entrenamiento', upload_to="rutines", null=True)
+    routine_st = models.BooleanField(default=False)
     def __str__(self) -> str:
         return self.name + " " + self.last_name  
 
@@ -64,14 +65,27 @@ class Payments(models.Model):
     method = models.CharField(max_length=1,choices=METHOD_OPT)
     staff = models.ForeignKey(Staff,on_delete=models.CASCADE)
 
+class Reps(models.Model):
+    reps = models.CharField(max_length=30, null=True)
+
+class RestTime(models.Model):
+    restTime= models.CharField(max_length=30, null=True)
+
 class Exercise(models.Model):
     name = models.CharField('Nombre', max_length=30, null=True)
     muscle = models.CharField('Músculo',max_length=30, null=True)
     link = models.CharField('Link de video', max_length=100,null=True)
     
+class Day(models.Model):
+    name = models.CharField("Dia", max_length=50, null=True)
+    exercise = models.ManyToManyField(Exercise)
+    reps = models.ManyToManyField(Reps)
+    restTime = models.ManyToManyField(RestTime)
 class Routines(models.Model):
-    exercises = models.ForeignKey(Exercise,on_delete=models.CASCADE)
     student = models.ForeignKey(Student,on_delete=models.CASCADE)
- 
+    day = models.ManyToManyField(Day)
+
+    
+
     
 
